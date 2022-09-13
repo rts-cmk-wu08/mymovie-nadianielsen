@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+}
+
+.flex__container {
+    display: flex;
+    justify-content: center;
+}
+
+.mymovies__heading {
+    font-weight: 700;
+}
+
+.posters__firstpage {
+    width: 8.9375rem;
+    height: 13.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 10px 15px rgba(57, 38, 1, 0.515);
+}
