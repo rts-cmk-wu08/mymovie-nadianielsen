@@ -5,47 +5,51 @@ document.addEventListener("DOMContentLoaded", function(){
     
     let imgPath = "https://image.tmdb.org/t/p/original/"
     let myKey = "75f15351c6119a96302b866663e596b0"
-    
-    let flexContainer = document.querySelector(".flex__container")
-    
-    let flexContainer2 = document.querySelector(".flex__container2")
-    
-    let flexContainerMoviesScrollX = document.querySelector(".flex__container__moviesscrollx")
-    
-    let popularHeading = document.querySelector(".flex__popularheading")  
+        
+    let wrapperElm = document.querySelector(".wrapper")
 
-    let footer = document.querySelector(".footer")
+    const headerIndex = document.createElement("header")
+    wrapperElm.append(headerIndex)
 
+    const mainIndex = document.createElement("main")
+    mainIndex.classList.add("main")
+    wrapperElm.append(mainIndex)
+
+    const footerIndex = document.createElement("footer")
+    footerIndex.classList.add("footer")
+    wrapperElm.append(footerIndex)
+        
     fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=75f15351c6119a96302b866663e596b0&language=en-US&page=1`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
 
 
-            let myMovies = document.createElement("div")
-            
-            myMovies.innerHTML = `
-            <h1 class="mymovies__heading">MyMovies</h1>
-            <!-- <button>switch</button> -->
-            `
+        let myMoviesHeader = document.createElement("div")
+        myMoviesHeader.innerHTML = `
+        <div class="header__flex">
+        <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+        </label>
+        <h1 class="mymovies__heading">MyMovies</h1>
+        </div>
+        `
+            headerIndex.append(myMoviesHeader)
 
-            flexContainer.append(myMovies)
-
-            let nowShowing = document.createElement("div")
-            nowShowing.innerHTML = `
-                
+            let nowShowingHeading = document.createElement("div")
+            nowShowingHeading.classList.add("nowshowing__flex")
+            nowShowingHeading.innerHTML = `
+                <div class="nowshowing__flex">
                 <h2 class="nowshowing__heading">Now Showing <button class="seemore__btn">See more</button></h2>
+                </div>
                 `
 
-                flexContainer2.append(nowShowing)
+                mainIndex.append(nowShowingHeading)
 
-            let popularFlex = document.createElement("div")
-            popularFlex.innerHTML = `
-            <h2 class="popular__heading">Popular <button class="seemore__btn__popular seemore__btn mulish__font">See more</button></h2>
-            `
-
-            popularHeading.append(popularFlex)
-
+            const flexContainerMoviesScrollX = document.createElement("div")
+            flexContainerMoviesScrollX.classList.add("flex__container__moviesscrollx")
+            mainIndex.append(flexContainerMoviesScrollX)
 
             data.results.forEach(result => {
                 let movies = document.createElement("a")
@@ -60,6 +64,16 @@ document.addEventListener("DOMContentLoaded", function(){
                 flexContainerMoviesScrollX.append(movies)
             })
       
+            const flexContainerPopularHeading = document.createElement("div")
+            flexContainerPopularHeading.classList.add("flex__popularheading")
+            mainIndex.append(flexContainerPopularHeading)
+
+            let popularFlex = document.createElement("div")
+            popularFlex.innerHTML = `
+            <h2 class="popular__heading">Popular <button class="seemore__btn__popular seemore__btn mulish__font">See more</button></h2>
+            `
+
+            flexContainerPopularHeading.append(popularFlex)
     })
 
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=75f15351c6119a96302b866663e596b0&language=en-US&page=1`)
@@ -67,7 +81,9 @@ document.addEventListener("DOMContentLoaded", function(){
     .then(data =>{
         console.log(data)
 
-        let flexContainerPopular = document.querySelector(".flex__container__popularposter")
+        const flexContainerPopular = document.createElement("div")
+        flexContainerPopular.classList.add("flex__container__popularposter")
+        mainIndex.append(flexContainerPopular)
 
         let imgPathPopular = "https://image.tmdb.org/t/p/w500"
 
@@ -79,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function(){
              console.log(data)
 
             data.genres.forEach((genre, index) => {
-                if (index < 2) {
+                if (index < 3) {
                     let genreP = document.createElement("p")
                     genreP.innerHTML = `
                     <div class="genres__flex">
@@ -118,6 +134,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
         `
 
-        footer.append(footerNavigation)
+        footerIndex.append(footerNavigation)
     })
 })

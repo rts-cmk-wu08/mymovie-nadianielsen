@@ -8,7 +8,180 @@ body {
     font-family: 'Merriweather', serif;
 }
 
-.poster__flex {
+.flex__container__header, .header__flex, .text__flex, .flexcontainer__genre, .length__language__release, .flexcontainer__cast {
     display: flex;
+}
+
+.mulish__font {
+    font-family: 'Mulish', sans-serif; 
+}
+
+.header__flex {
     align-items: flex-start;
+}
+
+.poster__img, .slider, .slider:before {
+    position: absolute;
+}
+
+.poster__img, .main__detailswhitebox {
+    width: 100%;
+}
+
+.arrow__left, .switch, .link__arrow {
+    z-index: 1000;
+}
+
+.arrow__left, .switch {
+    margin-top: 2rem; 
+}
+
+.arrow__left {
+    color: white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: auto;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    cursor: pointer;
+    width: 3.8rem;
+    height: 2rem;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: rgb(0, 0, 0);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 5rem;
+}
+
+.slider.round:before {
+    border-radius: 5rem;
+}
+
+.main__detailswhitebox {
+    background-color: white;
+    height: 65vh;
+    position: fixed;
+    bottom: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    overflow-y: scroll;
+}
+
+.text__flex {
+    justify-content: space-between;
+}
+
+.titles__details {
+    padding-top: 1rem;
+}
+
+.titles__details, .bookmark, .arrow__left, .cast__heading {
+    font-size: 1.5rem;
+}
+
+.titles__details, .vote__imdb, .arrow__left, .description__heading, .runtime__movies, .length__heading, .overview__description, .cast__names, .cast__heading{
+    padding-left: 1.2rem;
+}
+
+.bookmark, .switch, .overview__description {
+    padding-right: 1.2rem;
+}
+
+.bookmark {
+    color: black;
+    padding-top: 2rem;
+}
+
+.fa__star {
+    color: #FFC319;
+}
+
+.vote__imdb {
+    color: rgba(0, 0, 0, 0.397);
+    font-size: 1rem;
+}
+
+.flexcontainer__genre {
+    flex-direction: row;
+}
+
+.genres {
+    background-color: #DBE3FF;
+    color: #88A4E8;
+    border-radius: 1rem;
+    text-align: center;
+    margin-left: 0.6rem;
+    height: 1.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2%;
+}
+
+.length__heading, .language__heading, .release__heading, .overview__description {
+    opacity: 40%;
+}
+
+.length__heading, .runtime__movies {
+    margin-right: auto;
+}
+
+.language__heading, .spoken__language {
+    margin: auto;
+}
+
+.release__heading, .release__date__text {
+    margin-left: auto;
+    padding-right: 4rem;
+}
+
+.spoken__language {
+    padding-right: 1rem;
+}
+
+.flexcontainer__cast {
+    overflow-x: scroll;
+}
+
+.profile__cast__picture {
+    width: 6rem;
+    height: 8.5rem;
+    border-radius: 0.6rem;
+    margin-left: 1.2rem;
 }
