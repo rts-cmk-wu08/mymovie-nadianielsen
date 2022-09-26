@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
-    
+
     let params = new URLSearchParams(window.location.search)
     let id = params.get("id")
     
@@ -18,27 +18,28 @@ document.addEventListener("DOMContentLoaded", function(){
     const footerIndex = document.createElement("footer")
     footerIndex.classList.add("footer")
     wrapperElm.append(footerIndex)
-        
+    
+    let myMoviesHeader = document.createElement("div")
+    myMoviesHeader.innerHTML = `
+    <div class="header__flex">
+    <label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span>
+    </label>
+    <h1 class="mymovies__heading">MyMovies</h1>
+    </div>
+    `
+        headerIndex.append(myMoviesHeader)
+    
+  
+    
     fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=75f15351c6119a96302b866663e596b0&language=en-US&page=1`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
 
 
-        let myMoviesHeader = document.createElement("div")
-        myMoviesHeader.innerHTML = `
-        <div class="header__flex">
-        <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label>
-        <h1 class="mymovies__heading">MyMovies</h1>
-        </div>
-        `
-            headerIndex.append(myMoviesHeader)
-
             let nowShowingHeading = document.createElement("div")
-            nowShowingHeading.classList.add("nowshowing__flex")
             nowShowingHeading.innerHTML = `
                 <div class="nowshowing__flex">
                 <h2 class="nowshowing__heading">Now Showing <button class="seemore__btn">See more</button></h2>
@@ -92,15 +93,14 @@ document.addEventListener("DOMContentLoaded", function(){
             fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=75f15351c6119a96302b866663e596b0&language=en-US`)
             .then(response => response.json())
             .then(data => {
-             console.log(data)
+            //  console.log(data)
 
             data.genres.forEach((genre, index) => {
-                if (index < 3) {
-                    let genreP = document.createElement("p")
+                if (index < 1) {
+                    let genreP = document.createElement("div")
+                    genreP.classList.add("genres__flex")
                     genreP.innerHTML = `
-                    <div class="genres__flex">
                     <p class="genres mulish__font">${genre.name}</p>
-                    </div>
                     `
                
                     popularMovies.append(genreP)
@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function(){
             })
             
         }) 
+
             let popularMovies = document.createElement("a")
             popularMovies.classList.add("titles__textdecoration")
             popularMovies.setAttribute("href", `details.html?id=${result.id}`)
@@ -136,4 +137,83 @@ document.addEventListener("DOMContentLoaded", function(){
 
         footerIndex.append(footerNavigation)
     })
+
+    // En anden måde af at lave en darkmode. Fik hjælp til det af en klassekammerat, men forstår godt hvad der sker i det. 
+
+    // function lightDarkMode() {
+        
+    //     let body = document.body
+    //     headerIndex.classList.toggle("darkmode")
+    //     mainIndex.classList.toggle("darkmode")
+
+    //     const footerBoxes = document.querySelector(".footer")
+    //     const footerIcons = document.querySelectorAll(".footer__icons > i")
+
+    //     footerIcons.forEach((elm) => {
+    //         elm.classList.toggle("footer__icons__darkmode")
+    //         console.log(footerIndex)
+
+    //     })
+
+    //     footerBoxes.classList.toggle("footer__background__black")
+
+        
+    //     const moviesTitles = document.querySelectorAll(".movies__titles")
+       
+    //     moviesTitles.forEach((elm) => {
+    //         elm.classList.toggle("darkmode")
+
+    //     })
+
+    //     const voteIMDB = document.querySelectorAll(".vote__imdb") 
+
+    //     voteIMDB.forEach((elm) => {
+    //         // console.log(voteIMBD)
+    //         elm.classList.toggle("darkmode")
+    //     })
+
+    //     const seeMoreBtn = document.querySelectorAll(".seemore__btn")
+        
+    //     seeMoreBtn.forEach((elm) => {
+    //         console.log(seeMoreBtn)
+    //         elm.classList.toggle("seemore__btn__darkmode")
+    //     })
+
+    //     const popularMoviesTitles = document.querySelectorAll(".populartitle__movies")
+
+    //     popularMoviesTitles.forEach((elm) => {
+    //         console.log(popularMoviesTitles)
+    //         elm.classList.toggle("darkmode")
+    //     })
+
+    //     const voteIMDBPopular = document.querySelectorAll(".imdb__popular")
+
+    //     voteIMDBPopular.forEach((elm) => {
+    //         console.log(voteIMDBPopular)
+    //         elm.classList.toggle("darkmode") 
+    //     })
+   
+    // }
+
+    // // tager mere tid om at sætte ting ind/i konsollen ligesom fetch - et godt par
+    // setTimeout(() => {
+    //     let switchBtn = document.querySelector(".switch")
+
+    //     switchBtn.addEventListener("mousedown", lightDarkMode)
+
+
+    // }, 500)
+
+    // .addEventListener("click", (e) => {
+    //     if (e.target.classList.contains("favorite__heart")) {
+    //         if (localStorage.getItem(e.target.dataset.id)) {
+    //             localStorage.removeItem(e.target.dataset.id)
+    //             e.target.classList.remove("red")
+    //         }else{
+    //             localStorage.setItem(e.target.dataset.id, "true")
+    //             e.target.classList.add("red")
+    //         }
+    //     }
+    // })
+
 })

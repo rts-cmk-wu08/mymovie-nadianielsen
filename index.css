@@ -16,7 +16,7 @@ body {
     margin-left: 1.2rem;
 }
 
-.header__flexcontainer, .nowshowing__flex, .flex__container__moviesscrollx, .grid__container, .populartitle__movies, .nav__flex, .genres__flex {
+.header__flex, .nowshowing__flex, .flex__container__moviesscrollx, .populartitle__movies, .nav__flex {
     display: flex;
 }
 
@@ -35,9 +35,8 @@ body {
 }
 
 .header__flex {
-    display: flex;
     flex-direction: row-reverse;
-    margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 .mymovies__heading {
@@ -52,7 +51,7 @@ body {
     width: 60px;
     height: 34px;
     margin-left: auto;
-    margin-right: 3rem;
+    margin-right: 2.5rem;
 }
 
 .switch input { 
@@ -82,13 +81,14 @@ body {
 }
 
 input:checked + .slider {
-    background-color: rgb(0, 0, 0);
+    background-color: white;
 }
 
 input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+    background-color: rgb(0, 0, 0);
 }
 
 /* Rounded sliders */
@@ -98,10 +98,6 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 5rem;
-}
-
-.flex__container2 {
-    justify-content: space-between;
 }
 
 .posters__firstpage {
@@ -116,7 +112,6 @@ input:checked + .slider:before {
 
 .movies__titles, .populartitle__movies {
     font-weight: bold;
-    color: black;
 }
 
 .fa__star, .fa__starpopular {
@@ -124,17 +119,14 @@ input:checked + .slider:before {
 }
 
 .vote__imdb, .imdb__popular {
-    color: rgba(0, 0, 0, 0.397);
     font-size: 0.8rem;
 }
 
 .seemore__btn {
     color: rgba(0, 0, 0, 0.381);
-    background: none;
-    border-radius: 2rem;
-    border: 2px solid rgba(0, 0, 0, 0.264);
     padding-bottom: 0.2rem;
     margin-left: 7.5rem;
+    border-radius: 2rem;
 }
 
 .seemore__btn__popular {
@@ -148,10 +140,9 @@ input:checked + .slider:before {
 }
 
 .flex__container__popularposter {
-    margin-top: 1rem;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 5rem;
 }
 
 .populartitle__movies, .imdb__popular, .genres {
@@ -167,7 +158,6 @@ input:checked + .slider:before {
 }
 
 .footer {
-    background-color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -182,12 +172,12 @@ input:checked + .slider:before {
     margin-top: 1.5rem;
 }
 
-.footer__icons {
-    color: #979797;
-}
-
 .ticket__icon {
     transform: rotate(90deg);
+}
+
+.genres, .flex__container__popularposter {
+    margin-top: 1rem;
 }
 
 .genres {
@@ -196,5 +186,30 @@ input:checked + .slider:before {
     width: 6rem;
     border-radius: 1rem;
     text-align: center;
+}   
+
+.button {
+    padding: 0.75rem;
+    border-radius: none;
 }
 
+.footer__icons__darkmode {
+    color: white;
+}
+
+.footer__background__black {
+    background-color: black;
+}
+
+/* den anden darkmode */
+/* .darkmode {
+    background-color: black;
+}
+.darkmode, .seemore__btn__darkmode{
+    color: white;
+}
+.seemore__btn, .seemore__btn__darkmode {
+}
+.seemore__btn__darkmode {
+    border: 2px solid white;
+} */

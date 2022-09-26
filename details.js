@@ -4,25 +4,31 @@ document.addEventListener("DOMContentLoaded", function(){
     let id = params.get("id")
     console.log(id)
     
+    let detailsPosters = document.createElement("header")
+    detailsPosters.classList.add("header__flex")
+    detailsPosters.innerHTML = `
+    <a href="index.html" class="link__arrow"><i class="fa-solid fa-arrow-left-long arrow__left"></i></a> 
+    <label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span>
+    </label>
+    `
+    document.body.append(detailsPosters)
+
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=75f15351c6119a96302b866663e596b0&language=en-US`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
         
         let imgPathPopular = "https://image.tmdb.org/t/p/w500"
- 
-        let detailsPosters = document.createElement("header")
-        detailsPosters.classList.add("header__flex")
-        detailsPosters.innerHTML = `
-        <a href="index.html" class="link__arrow"><i class="fa-solid fa-arrow-left-long arrow__left"></i></a> 
-        <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        </label>
-        <img class="poster__img" src="${imgPathPopular + data.poster_path}" alt="">
+
+        let postersImgDetails = document.createElement("div")
+        postersImgDetails.innerHTML = `
+            <img class="poster__img" src="${imgPathPopular + data.poster_path}" alt="">
         `
-        document.body.append(detailsPosters)
-        
+
+        detailsPosters.append(postersImgDetails)
+
         let detailsMain = document.createElement("main")
         detailsMain.classList.add("main__detailswhitebox")
         detailsMain.innerHTML = `
@@ -78,7 +84,9 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log(data)
             
             let castHeadline = document.createElement("div")
+            castHeadline.classList.add("castheading__flex")
             castHeadline.innerHTML = `
+            <button class="seemore__btn mulish__font">See more</button>
             <h3 class="cast__heading">Cast</h3>
             `
 
@@ -98,10 +106,56 @@ document.addEventListener("DOMContentLoaded", function(){
                 flexContainerCast.append(castsOfMovies)
             })
         })
-
-
     })
 
- 
+    // En anden måde af at lave en darkmode. Fik hjælp til det af en klassekammerat, men forstår godt hvad der sker i det. 
+
+    // function lightDarkMode() {
+    //     let body = document.body
+
+    //     const mainDarkMode = document.querySelector(".main__detailswhitebox")
+    //     console.log(mainDarkMode)
+
+    //     mainDarkMode.classList.toggle("darkmode")
+
+    //     const voteIMDB = document.querySelectorAll(".vote__imdb") 
+
+    //     voteIMDB.forEach((elm) => {
+    //         // console.log(voteIMBD)
+    //         elm.classList.toggle("darkmode")
+    //     })
+
+    //     const bookMarkDarkMode = document.querySelector(".bookmark")
+    //     console.log(bookMarkDarkMode)
+
+    //     bookMarkDarkMode.classList.toggle("darkmode")
+
+    //     const seeMoreBtn = document.querySelectorAll(".seemore__btn")
+        
+    //     seeMoreBtn.forEach((elm) => {
+    //         console.log(seeMoreBtn)
+    //         elm.classList.toggle("seemore__btn__darkmode")
+    //     })
+    // }
+
+    // setTimeout(() => {
+    //     let switchBtn = document.querySelector(".switch")
+
+    //     switchBtn.addEventListener("mousedown", lightDarkMode)
+
+
+    // }, 500)
+
+    // mainDarkMode.addEventListener("click", (e) => {
+    //     if (e.target.classList.contains("switch")) {
+    //         if (localStorage.getItem(e.target.dataset.class)) {
+    //             localStorage.removeItem(e.target.dataset.class)
+    //             e.target.classList.remove("darkmode")
+    //         }else{
+    //             localStorage.setItem(e.target.dataset.class, "true")
+    //             e.target.classList.add("light")
+    //         }
+    //     }
+    // })
 
 })
