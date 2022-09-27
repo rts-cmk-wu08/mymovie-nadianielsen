@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;1,300&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+}
+
+.titles__textdecoration {
+    text-decoration: none;
+}
+
+.posters__firstpage, .movies__titles, .vote__imdb, .flex__container__popularposter, .nowshowing__heading, .popular__heading {
+    margin-left: 1.2rem;
+}
+
+.header__flex, .nowshowing__flex, .flex__container__moviesscrollx, .populartitle__movies, .nav__flex {
+    display: flex;
+}
+
+.posters__firstpage, .popular__poster__path {
+    border-radius: 0.5rem;
+}
+
+.slider, .slider:before {
+    position: absolute;
+}
+
+.flex__container__moviesscrollx {
+    justify-content: space-between;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.header__flex {
+    flex-direction: row-reverse;
+    padding-top: 2rem;
+}
+
+.mymovies__heading {
+    font-weight: 700;
+    margin: 0 auto;
+    padding-left: 7rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: auto;
+    margin-right: 2.5rem;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    cursor: pointer;
+    width: 3.8rem;
+    height: 2rem;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: white;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    background-color: rgb(0, 0, 0);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 5rem;
+}
+
+.slider.round:before {
+    border-radius: 5rem;
+}
+
+.posters__firstpage {
+    width: 8.9375rem;
+    height: 13.25rem;
+    box-shadow: 0px 10px 15px rgba(57, 38, 1, 0.515);
+}
+
+.mulish__font {
+    font-family: 'Mulish', sans-serif;
+}
+
+.movies__titles, .populartitle__movies {
+    font-weight: bold;
+}
+
+.fa__star, .fa__starpopular {
+    color: #FFC319;
+}
+
+.vote__imdb, .imdb__popular {
+    font-size: 0.8rem;
+}
+
+.seemore__btn {
+    color: rgba(0, 0, 0, 0.381);
+    padding-bottom: 0.2rem;
+    margin-left: 7.5rem;
+    border-radius: 2rem;
+}
+
+.seemore__btn__popular {
+    margin-left: 12rem;
+}
+
+.popular__poster__path {
+    width: 10rem;
+    height: 14rem;
+    margin-bottom: -3rem;
+}
+
+.flex__container__popularposter {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+.populartitle__movies, .imdb__popular, .genres {
+    margin: 0;
+    width: 40%;
+    left: 11rem;
+    position: relative;
+    bottom: 11rem;
+}
+
+.imdb__popular {
+    margin-top: 0.5rem;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.089);
+}
+
+.nav__flex {
+    justify-content: space-between;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1.5rem;
+}
+
+.ticket__icon {
+    transform: rotate(90deg);
+}
+
+.genres, .flex__container__popularposter {
+    margin-top: 1rem;
+}
+
+.genres {
+    background-color: #DBE3FF;
+    color: #88A4E8;
+    width: 6rem;
+    border-radius: 1rem;
+    text-align: center;
+}   
+
+.button {
+    padding: 0.75rem;
+    border-radius: none;
+}
+
+.footer__icons__darkmode {
+    color: white;
+}
+
+.footer__background__black {
+    background-color: black;
+}
+
+/* den anden darkmode */
+/* .darkmode {
+    background-color: black;
+}
+.darkmode, .seemore__btn__darkmode{
+    color: white;
+}
+.seemore__btn, .seemore__btn__darkmode {
+}
+.seemore__btn__darkmode {
+    border: 2px solid white;
+} */
