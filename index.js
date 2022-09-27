@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
 
+    let popularPage = 1
+
     let params = new URLSearchParams(window.location.search)
     let id = params.get("id")
     
@@ -77,66 +79,100 @@ document.addEventListener("DOMContentLoaded", function(){
             flexContainerPopularHeading.append(popularFlex)
     })
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=75f15351c6119a96302b866663e596b0&language=en-US&page=1`)
-    .then(response => response.json())
-    .then(data =>{
-        console.log(data)
 
-        const flexContainerPopular = document.createElement("div")
-        flexContainerPopular.classList.add("flex__container__popularposter")
-        mainIndex.append(flexContainerPopular)
+    function fetchPopular(page) {
+        
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=75f15351c6119a96302b866663e596b0&language=en-US&page=${page}`)
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data)
+    
+            const flexContainerPopular = document.createElement("div")
+            flexContainerPopular.classList.add("flex__container__popularposter")
+            mainIndex.append(flexContainerPopular)
+    
+            let imgPathPopular = "https://image.tmdb.org/t/p/w500"
+    
+            data.results.forEach((result, index) => {
+                // console.log(result)
+                fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=75f15351c6119a96302b866663e596b0&language=en-US`)
+                .then(response => response.json())
+                .then(data => {
+                //  console.log(data)
+    
+                data.genres.forEach((genre, index) => {
+                    if (index < 1) {
+                        let genreP = document.createElement("div")
+                        genreP.classList.add("genres__flex")
+                        genreP.innerHTML = `
+                        <p class="genres mulish__font">${genre.name}</p>
+                        `
+                   
+                        popularMovies.append(genreP)
+                        
+                    } else {
+                        return
+                    }
+                })
+                
+            }) 
 
-        let imgPathPopular = "https://image.tmdb.org/t/p/w500"
+                //https://image.tmdb.org/t/p/w500${result.poster_path}
+    
+                let popularMovies = document.createElement("a")
+                popularMovies.classList.add("titles__textdecoration")
+                popularMovies.setAttribute("href", `details.html?id=${result.id}`)
+                popularMovies.innerHTML = `
+                <!-- <img class="popular__poster__path" src="${imgPathPopular + result.poster_path}" alt=""> -->
+                <img class="popular__poster__path" src="/image/placeholder.gif" alt="">
+                <p class="populartitle__movies mulish__font">${result.title}</p>
+                <p class="mulish__font imdb__popular"><i class="fa-sharp fa-solid fa-star fa__starpopular"></i> ${result.vote_average}/10 IMDb</p>
+    
+                `
+                  if (index === 18) {
+                    const intersectionObserver = new IntersectionObserver((entries) => {
+                        if (entries[0].intersectionRatio <= 0) return;
+    
+                        popularPage++
+                        fetchPopular(popularPage)
+                        intersectionObserver.unobserve(popularMovies)
+                    })
+    
+                    intersectionObserver.observe(popularMovies)
+                }
+    
+                flexContainerPopular.append(popularMovies)
 
-        data.results.forEach(result =>{
-            // console.log(result)
-            fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=75f15351c6119a96302b866663e596b0&language=en-US`)
-            .then(response => response.json())
-            .then(data => {
-            //  console.log(data)
 
-            data.genres.forEach((genre, index) => {
-                if (index < 1) {
-                    let genreP = document.createElement("div")
-                    genreP.classList.add("genres__flex")
-                    genreP.innerHTML = `
-                    <p class="genres mulish__font">${genre.name}</p>
-                    `
-               
-                    popularMovies.append(genreP)
-                    
-                } else {
-                    return
+                let imgElm = popularMovies.querySelector(".popular__poster__path")
+                console.log(imgElm)
+    
+                let posterImg = new Image()
+                posterImg.src = `https://image.tmdb.org/t/p/w500${result.poster_path}`
+    
+                posterImg.onload = () => {
+                    imgElm.src = posterImg.src
                 }
             })
-            
-        }) 
 
-            let popularMovies = document.createElement("a")
-            popularMovies.classList.add("titles__textdecoration")
-            popularMovies.setAttribute("href", `details.html?id=${result.id}`)
-            popularMovies.innerHTML = `
-            <img class="popular__poster__path" src="${imgPathPopular + result.poster_path}" alt="">
-            <p class="populartitle__movies mulish__font">${result.title}</p>
-            <p class="mulish__font imdb__popular"><i class="fa-sharp fa-solid fa-star fa__starpopular"></i> ${result.vote_average}/10 IMDb</p>
 
+            let footerNavigation = document.createElement("nav")
+            footerNavigation.classList.add("nav__flex")
+            footerNavigation.innerHTML = `
+            <a class="footer__icons" href="index.html"><i class="fa-solid fa-film fa-2x"></i></a>
+            <a class="footer__icons" href="index.html"><i class="fa-solid fa-ticket-simple fa-2x ticket__icon"></i></a>  
+            <a class="footer__icons" href="index.html"><i class="fa-regular fa-bookmark fa-2x"></i></a>  
+    
             `
-            
+    
+            footerIndex.append(footerNavigation)
 
-            flexContainerPopular.append(popularMovies)
+          
         })
+    }
 
-        let footerNavigation = document.createElement("nav")
-        footerNavigation.classList.add("nav__flex")
-        footerNavigation.innerHTML = `
-        <a class="footer__icons" href="index.html"><i class="fa-solid fa-film fa-2x"></i></a>
-        <a class="footer__icons" href="index.html"><i class="fa-solid fa-ticket-simple fa-2x ticket__icon"></i></a>  
-        <a class="footer__icons" href="index.html"><i class="fa-regular fa-bookmark fa-2x"></i></a>  
+    fetchPopular(popularPage)
 
-        `
-
-        footerIndex.append(footerNavigation)
-    })
 
     // En anden måde af at lave en darkmode. Fik hjælp til det af en klassekammerat, men forstår godt hvad der sker i det. 
 

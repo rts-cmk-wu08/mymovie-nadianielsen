@@ -1,5 +1,3 @@
-/* første forsøg på darkmode. Min text blev ikke hvid, når den var darkmode */
-
 document.addEventListener("DOMContentLoaded", function(){
 
     let switchElm = document.querySelector(".switch input")

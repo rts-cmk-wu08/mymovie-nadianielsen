@@ -20,14 +20,31 @@ document.addEventListener("DOMContentLoaded", function(){
     .then(data => {
         console.log(data)
         
-        let imgPathPopular = "https://image.tmdb.org/t/p/w500"
+        // let imgPathPopular = "https://image.tmdb.org/t/p/w500"
 
-        let postersImgDetails = document.createElement("div")
-        postersImgDetails.innerHTML = `
-            <img class="poster__img" src="${imgPathPopular + data.poster_path}" alt="">
-        `
+        // let postersImgDetails = document.createElement("div")
+        // postersImgDetails.innerHTML = `
+        //     <img class="poster__img" src="${imgPathPopular + data.poster_path}" alt="">
+        //     `
 
-        detailsPosters.append(postersImgDetails)
+        // detailsPosters.append(postersImgDetails)
+
+        fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=75f15351c6119a96302b866663e596b0&language=en-US`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+            // pop tager et specifikt et element/array og tager noget data derfra, tror jeg?
+                let trailers = data.results.pop()
+                console.log(trailers)
+            
+                let trailerMovies = document.createElement("div")
+                trailerMovies.innerHTML = `
+                <iframe width="402" height="330" src="https://www.youtube.com/embed/${trailers.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `
+            
+            detailsPosters.append(trailerMovies)
+        })
 
         let detailsMain = document.createElement("main")
         detailsMain.classList.add("main__detailswhitebox")

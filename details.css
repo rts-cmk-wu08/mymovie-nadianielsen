@@ -20,7 +20,7 @@ body {
     align-items: flex-start;
 }
 
-.arrow__left, .slider, .slider:before {
+.arrow__left, .slider, .slider:before, .switch {
     position: absolute;
 }
 
@@ -28,16 +28,16 @@ body {
     width: 100%;
 }
 
-.poster__img {
+/* .poster__img {
     position: relative;
-}
+} */
 
 .arrow__left, .switch, .link__arrow {
     z-index: 1000;
 }
 
 .arrow__left, .switch {
-    margin-top: 2rem; 
+    margin-top: 4rem; 
 }
 
 .arrow__left {
@@ -45,12 +45,11 @@ body {
 }
 
 .switch {
-    /* position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
     margin-left: auto;
-    margin-left: 5rem; */
+    margin-left: 19.5rem;
 }
 
 .switch input { 
