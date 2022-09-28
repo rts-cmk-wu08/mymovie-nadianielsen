@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function(){
             let nowShowingHeading = document.createElement("div")
             nowShowingHeading.innerHTML = `
                 <div class="nowshowing__flex">
-                <h2 class="nowshowing__heading">Now Showing <button class="seemore__btn">See more</button></h2>
+                <h2 class="nowshowing__heading">Now Showing</h2>
+                <button class="seemore__btn">See more</button>
                 </div>
                 `
 
@@ -73,7 +74,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
             let popularFlex = document.createElement("div")
             popularFlex.innerHTML = `
-            <h2 class="popular__heading">Popular <button class="seemore__btn__popular seemore__btn mulish__font">See more</button></h2>
+            <div class="popular__heading__flex">
+            <h2 class="popular__heading">Popular</h2>
+            <button class="seemore__btn mulish__font">See more</button>
+            </div>
             `
 
             flexContainerPopularHeading.append(popularFlex)
@@ -103,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 data.genres.forEach((genre, index) => {
                     if (index < 1) {
                         let genreP = document.createElement("div")
-                        genreP.classList.add("genres__flex")
                         genreP.innerHTML = `
                         <p class="genres mulish__font">${genre.name}</p>
                         `
@@ -114,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function(){
                         return
                     }
                 })
-                
-            }) 
+   
+            })
 
                 //https://image.tmdb.org/t/p/w500${result.poster_path}
     

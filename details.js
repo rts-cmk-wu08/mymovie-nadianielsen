@@ -65,7 +65,9 @@ document.addEventListener("DOMContentLoaded", function(){
         data.genres.forEach(genre => {
             genreMain = document.createElement("div")
             genreMain.innerHTML = `
+            <div class="genres__scrollx">
             <span class="genres mulish__font">${genre.name}</span>
+            </div>
             `
     
             flexContainerGenre.append(genreMain)
