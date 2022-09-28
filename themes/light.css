@@ -1,0 +1,35 @@
+/* første forsøg på darkmode. Min text blev ikke hvid, når den var darkmode */
+
+body {
+    background-color: white;
+    color: black;
+}
+
+.button {
+    z-index: 1000;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.movies__titles, .populartitle__movies {
+    color: black;
+}
+
+.vote__imdb, .imdb__popular {
+    color: black;
+}
+
+.footer {
+    background-color: white;
+}
+
+.footer__icons {
+    color: #979797;
+}
+
+.seemore__btn {
+    color: rgba(0, 0, 0, 0.381);
+    background: none;
+    border: 2px solid rgba(0, 0, 0, 0.264);
+}
