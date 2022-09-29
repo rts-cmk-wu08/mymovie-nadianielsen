@@ -16,7 +16,7 @@ body {
     margin-left: 1.2rem;
 }
 
-.header__flex, .nowshowing__flex, .flex__container__moviesscrollx, .populartitle__movies, .nav__flex,  .nowshowing__flex, .popular__heading__flex, .genres__flex {
+.header__flex, .nowshowing__flex, .flex__container__moviesscrollx, .populartitle__movies, .nav__flex,  .nowshowing__flex, .popular__heading__flex, .popular__flex {
     display: flex;
 }
 
@@ -73,7 +73,7 @@ body {
     content: "";
     height: 26px;
     width: 26px;
-    left: 4px;
+    left: 7px;
     bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
@@ -133,24 +133,32 @@ input:checked + .slider:before {
 }
 
 .popular__poster__path {
-    width: 10rem;
-    height: 14rem;
+    width: 8rem;
+    height: 12rem;
     margin-bottom: -3rem;
 }
 
 .flex__container__popularposter {
-    flex-direction: column;
     justify-content: space-between;
     gap: 5rem;
 }
 
-.populartitle__movies, .imdb__popular, .genres {
+.popular__flex {
+    margin-bottom: 5rem;
+    text-decoration: none;
+}
+
+.title__imdb__text__genres__container {
+    margin-left: 1rem;
+}
+
+/* .populartitle__movies, .imdb__popular, .genres {
     margin: 0;
     width: 40%;
     left: 11rem;
     position: relative;
     bottom: 11rem;
-}
+} */
 
 .imdb__popular {
     margin-top: 0.5rem;
@@ -175,14 +183,19 @@ input:checked + .slider:before {
     transform: rotate(90deg);
 }
 
-.genres, .flex__container__popularposter {
+.genres__box {
+    display: inline-block;
+    margin-left: 0.2rem;
+}
+
+.flex__container__popularposter {
     margin-top: 1rem;
 }
 
 .genres {
     background-color: #DBE3FF;
     color: #88A4E8;
-    width: 6rem;
+    width: 7.1rem;
     border-radius: 1rem;
     text-align: center;   
 }   

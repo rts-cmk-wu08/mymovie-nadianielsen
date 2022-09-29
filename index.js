@@ -103,15 +103,20 @@ document.addEventListener("DOMContentLoaded", function(){
                 .then(response => response.json())
                 .then(data => {
                 //  console.log(data)
+
+                const flexGenresBox = document.createElement("div")
+                flexGenresBox.classList.add("genres__flexbox")
+                popularText.append(flexGenresBox)
     
                 data.genres.forEach((genre, index) => {
-                    if (index < 1) {
+                    if (index < 5) {
                         let genreP = document.createElement("div")
+                        genreP.classList.add("genres__box")
                         genreP.innerHTML = `
                         <p class="genres mulish__font">${genre.name}</p>
                         `
                    
-                        popularMovies.append(genreP)
+                        flexGenresBox.append(genreP)
                         
                     } else {
                         return
@@ -123,15 +128,24 @@ document.addEventListener("DOMContentLoaded", function(){
                 //https://image.tmdb.org/t/p/w500${result.poster_path}
     
                 let popularMovies = document.createElement("a")
-                popularMovies.classList.add("titles__textdecoration")
+                popularMovies.classList.add("popular__flex")
                 popularMovies.setAttribute("href", `details.html?id=${result.id}`)
                 popularMovies.innerHTML = `
+                <div class="image__popular__container">
                 <!-- <img class="popular__poster__path" src="${imgPathPopular + result.poster_path}" alt=""> -->
                 <img class="popular__poster__path" src="/image/placeholder.gif" alt="">
+                </div>
+                `
+
+                let popularText = document.createElement("div")
+                popularText.classList.add("title__imdb__text__genres__container")
+                popularText.innerHTML = `
                 <p class="populartitle__movies mulish__font">${result.title}</p>
                 <p class="mulish__font imdb__popular"><i class="fa-sharp fa-solid fa-star fa__starpopular"></i> ${result.vote_average}/10 IMDb</p>
-    
                 `
+
+                popularMovies.append(popularText)
+
                   if (index === 18) {
                     const intersectionObserver = new IntersectionObserver((entries) => {
                         if (entries[0].intersectionRatio <= 0) return;
