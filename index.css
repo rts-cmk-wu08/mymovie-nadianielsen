@@ -149,7 +149,7 @@ input:checked + .slider:before {
 }
 
 .title__imdb__text__genres__container {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 }
 
 /* .populartitle__movies, .imdb__popular, .genres {
@@ -195,7 +195,7 @@ input:checked + .slider:before {
 .genres {
     background-color: #DBE3FF;
     color: #88A4E8;
-    width: 7.1rem;
+    width: 7.2rem;
     border-radius: 1rem;
     text-align: center;   
 }   
