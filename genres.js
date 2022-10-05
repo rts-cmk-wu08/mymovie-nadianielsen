@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
-
-    let genres = [
+ export let genres = [
         {
             id: 28, 
             name: "Action"
@@ -91,4 +89,3 @@ document.addEventListener("DOMContentLoaded", function(){
             name: "Western"
         }
     ]
-})

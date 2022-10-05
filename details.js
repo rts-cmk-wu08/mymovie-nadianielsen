@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(){
             
                 let trailerMovies = document.createElement("div")
                 trailerMovies.innerHTML = `
-                <iframe width="402" height="330" src="https://www.youtube.com/embed/${trailers.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="415" height="330" src="https://www.youtube.com/embed/${trailers.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `
             
             detailsPosters.append(trailerMovies)

@@ -1,4 +1,10 @@
-document.addEventListener("DOMContentLoaded", function(){
+    import {genres} from "./genres.js"
+    import {makeElement} from "./modules/makeElm.js"
+    import header from "./modules/header.js"
+    import main from "./modules/mainnowshowing.js"
+    import mainPosters from "./modules/postersnowshowing.js"
+    import popular from "./modules/popularHeading.js"
+    import genresIndex from "./modules/genresindex.js"
 
     let popularPage = 1
 
@@ -10,28 +16,26 @@ document.addEventListener("DOMContentLoaded", function(){
         
     let wrapperElm = document.querySelector(".wrapper")
 
-    const headerIndex = document.createElement("header")
-    wrapperElm.append(headerIndex)
+    wrapperElm.append(header())
 
-    const mainIndex = document.createElement("main")
-    mainIndex.classList.add("main")
+    const mainIndex = makeElement("main", "main")
     wrapperElm.append(mainIndex)
 
-    const footerIndex = document.createElement("footer")
+    const footerIndex = makeElement("footer", "footer")
     footerIndex.classList.add("footer")
     wrapperElm.append(footerIndex)
     
-    let myMoviesHeader = document.createElement("div")
-    myMoviesHeader.innerHTML = `
-    <div class="header__flex">
-    <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-    </label>
-    <h1 class="mymovies__heading">MyMovies</h1>
-    </div>
-    `
-        headerIndex.append(myMoviesHeader)
+    // let myMoviesHeader = makeElement("div")
+    // myMoviesHeader.innerHTML = `
+    // <div class="header__flex">
+    // <label class="switch">
+    // <input type="checkbox">
+    // <span class="slider round"></span>
+    // </label>
+    // <h1 class="mymovies__heading">MyMovies</h1>
+    // </div>
+    // `
+    // headerIndex.append(myMoviesHeader)
     
   
     
@@ -41,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log(data)
 
 
-            let nowShowingHeading = document.createElement("div")
+            let nowShowingHeading = makeElement("div")
             nowShowingHeading.innerHTML = `
                 <div class="nowshowing__flex">
                 <h2 class="nowshowing__heading">Now Showing</h2>
@@ -49,38 +53,22 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 `
 
-                mainIndex.append(nowShowingHeading)
+                mainIndex.append(main())
 
-            const flexContainerMoviesScrollX = document.createElement("div")
-            flexContainerMoviesScrollX.classList.add("flex__container__moviesscrollx")
+            const flexContainerMoviesScrollX = makeElement("div", "flex__container__moviesscrollx")
+            console.log(flexContainerMoviesScrollX)
             mainIndex.append(flexContainerMoviesScrollX)
 
             data.results.forEach(result => {
-                let movies = document.createElement("a")
-                movies.classList.add("titles__textdecoration")
-                movies.setAttribute("href", `details.html?id=${result.id}` )
-                movies.innerHTML = `
-                <img class="posters__firstpage" src="${imgPath + result.poster_path}" alt="">
-                <p class="movies__titles mulish__font">${result.title}</p>
-                <p class="vote__imdb mulish__font"><i class="fa-sharp fa-solid fa-star fa__star"></i> ${result.vote_average}/10 IMDb</p>
-                `
+              
 
-                flexContainerMoviesScrollX.append(movies)
+                flexContainerMoviesScrollX.append(mainPosters(result))
             })
       
-            const flexContainerPopularHeading = document.createElement("div")
-            flexContainerPopularHeading.classList.add("flex__popularheading")
+            const flexContainerPopularHeading = makeElement("div", "flex__popularheading")
             mainIndex.append(flexContainerPopularHeading)
-
-            let popularFlex = document.createElement("div")
-            popularFlex.innerHTML = `
-            <div class="popular__heading__flex">
-            <h2 class="popular__heading">Popular</h2>
-            <button class="seemore__btn mulish__font">See more</button>
-            </div>
-            `
-
-            flexContainerPopularHeading.append(popularFlex)
+           
+            flexContainerPopularHeading.append(popular())
     })
 
 
@@ -116,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         <p class="genres mulish__font">${genre.name}</p>
                         `
                    
-                        flexGenresBox.append(genreP)
+                        flexGenresBox.append(genresIndex(genre, index))
                         
                     } else {
                         return
@@ -269,4 +257,3 @@ document.addEventListener("DOMContentLoaded", function(){
     //     }
     // })
 
-})
